@@ -1,4 +1,4 @@
-
+#include <fstream>
 #include "ToDo.h"
 using namespace std;
 
@@ -7,6 +7,23 @@ ToDo::ToDo(int len){
 	length = len;
 	list = new string[length];
 }
+ToDo::ToDo(){
+	ToDo(5);
+}
+ToDo::~ToDo(){
+	ofstream savefile;
+	savefile.open("save.txt");
+	if(savefile.fail()){
+		cout << "Something really awful happened here with save.txt";
+		exit(1);
+	}
+	//for (i=0; i<list.length;i++){
+	//for(int i=0;i<len;i++){	
+	while(list){
+		savefile << list << endl;
+	}
+	delete [] list;
+}
 void ToDo::add(string item){
 	if (next < length){
 	list[next]=item;
@@ -14,7 +31,7 @@ void ToDo::add(string item){
 	}
 }
 
-void ToDo::done(){
+void ToDo::remove(){
 	next--;
 	list[next] = "";
 }
@@ -23,4 +40,8 @@ void ToDo::print(){
 	for(int i=0;i<next;i++){
 		cout << " * " << list[i] << endl;
 	}
+}
+
+void ToDo::done(){
+	
 }
