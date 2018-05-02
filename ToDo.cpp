@@ -10,18 +10,11 @@ ToDo::ToDo(int len){
 ToDo::ToDo(){
 	ToDo(5);
 }
+
+
+
 ToDo::~ToDo(){
-	ofstream savefile;
-	savefile.open("save.txt");
-	if(savefile.fail()){
-		cout << "Something really awful happened here with save.txt";
-		exit(1);
-	}
-	//for (i=0; i<list.length;i++){
-	//for(int i=0;i<len;i++){	
-	while(list){
-		savefile << list << endl;
-	}
+	savefile();
 	delete [] list;
 }
 void ToDo::add(string item){
@@ -37,11 +30,30 @@ void ToDo::remove(){
 }
 
 void ToDo::print(){
+	//ofstream savefile;
+	//savefile.open("save.txt");
 	for(int i=0;i<next;i++){
 		cout << " * " << list[i] << endl;
+		
+		//savefile << list[i] <<endl;
 	}
 }
 
 void ToDo::done(){
 	
+}
+
+void ToDo::savefile(){
+	ofstream savefile;
+	savefile.open("save.txt");
+	if(savefile.fail()){
+		cout << "Something really awful happened here with save.txt";
+		exit(1);
+	}
+	
+	for(int i=0;i<next;i++){	
+		savefile << list[i] <<endl;
+	}
+	
+	savefile.close();
 }

@@ -23,6 +23,7 @@ int main(){
 		cout << "Add to list (a)" << endl;
 		cout << "Remove  list item (r)" << endl;
 		cout << "Print List (p)" << endl;
+		cout << "Save list to file (s)"<< endl;
 		cout << "Exit list app (x)" << endl;
 		cout << "What do you want to do? ";
 		cin >> next;
@@ -41,9 +42,12 @@ int main(){
 			case 'p':
 				list.print();
 				break;
+			case 's':
+				list.savefile();
+				break;
 			case 'x':
 				list.done();
-				
+				//next ='q';
 		}
 	}
 	
